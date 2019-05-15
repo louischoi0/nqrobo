@@ -144,7 +144,7 @@ class baseOptimizer :
         weight_dict = {}
         score_dict = {} 
 
-        for fset in self.fund_sets[:100] :
+        for fset in self.fund_sets[:5] :
 
             stime_series = self.time_series.loc[:,fset]
             sfund_pool = self.fund_pool.loc[fset,:]
@@ -154,7 +154,7 @@ class baseOptimizer :
             print(sfund_pool)
             consts = self.supv.export_constraints(robo_id,types,risks)
 
-            weights , score = self.eval_fund_set(stime_series,sfund_pool,consts)
+            score , weights = self.eval_fund_set(stime_series,sfund_pool,consts)
             fkey = meta.fund_set_to_id(fset)
 
             weight_dict[fkey] = weights
